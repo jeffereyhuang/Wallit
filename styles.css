@@ -1,0 +1,52 @@
+$dark-gray: #455a64;
+$light-gray: #90a4ae;
+$white: #eceff1;
+$red: #ff5252;
+$green: #69f0ae;
+$white-border: 1px solid $white;
+
+body {
+  background: $dark-gray;
+  color: $white;
+  font: {
+    family: 'Lato', sans-serif;
+    weight: 300;
+  }
+}
+
+h1 {
+  font: 72px 'Oswald', Arial, sans-serif;
+  margin: 50px 0;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  width: 95%;
+  @media (min-width: 600px) {
+    width: 75%;
+  }
+  @media (min-width: 900px) {
+    width: 65%;
+  }
+}
+
+.display {
+  border:none
+}
+
+input {
+  background: transparent;
+  border: none {
+    bottom: $white-border;
+  }
+  font-size: 24px;
+  height: 50px;
+  padding-bottom: 15px;
+  &:focus {
+    outline: 0;
+  }
+  @media (min-width: 900px) {
+    font-size: 32px;
+  }
+}
