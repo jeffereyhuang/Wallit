@@ -35,13 +35,4 @@ $(function(){
 		}
 	});
 
-
-	// Fade list item and delete from DOM
-	$(document).on('click', '.delete-todo' , function(e){
-		e.preventDefault();
-		$(this).closest('li').fadeOut(500, function(){
-			$(this).remove();
-		});
-	});
-
 });
