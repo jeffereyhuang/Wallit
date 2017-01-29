@@ -1,8 +1,16 @@
 body {
-  background: linear-gradient(-45deg, #0E95E1 20%, #EAB234 80%);
   color: white;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
+  overflow: hidden;
+}
+
+html {
+    min-height: 100%;
+    background: linear-gradient(-45deg, #0E95E1 20%, #FB8C00 80%);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
