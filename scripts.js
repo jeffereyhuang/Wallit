@@ -1,28 +1,33 @@
 $(function(){
 
 	// initializes money spent
-  var $total = 0;
+  var $spent = 0;
   var $input = document.getElementById("money");
-  document.getElementById("total").innerHTML = $total;
+  var $total = document.getElementById("total");
+  var $displaySpent = '$' + $spent
+  $total.innerHTML = $displaySpent;
 
 	// Define function to add transactions/update money
 	function logTransaction(){
     $money = parseMoney();
 
     // adds money
-    $total = $money + $total;
+    $spent = $money + $spent;
+
     // displays a string
-    var $display = $total.toFixed(2);
-    document.getElementById("total").innerHTML = $display;
+    $displaySpent = decimalCheck($spent);
+    $total.innerHTML = $displaySpent;
 
 		// Create new list item
-    var $moneyFormatted = $money.toFixed(2)
+    var $moneyFormatted = decimalCheck($money);
 		var $newListItem = $('<li class="todo">' + $moneyFormatted + '</li>');
 
 		// Add list item to end of list
 		var $addListItem = $('ul').append($newListItem);
 
+    // Clear field
     $input.value = '';
+
 		// Hide list item before fading it into view
 		$newListItem.hide().fadeIn(100);
 
@@ -36,8 +41,15 @@ $(function(){
        logTransaction();
     }
     return $money;
-  }
+  };
 
+  // handles decimals
+  function decimalCheck($decimal) {
+    if (($decimal % 1) != 0)
+      return '$' + $decimal.toFixed(2);
+    else
+      return '$' + $decimal;
+  };
 
 
 	// Call logTransaction function when enter key is pressed
