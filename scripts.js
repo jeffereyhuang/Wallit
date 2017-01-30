@@ -6,12 +6,9 @@ $(function(){
 
 	// Define function to add transactions/update money
 	function logTransaction(){
-		//checks money
-		$money =  parseInt(document.getElementById("money").value, 10);
-    if (isNaN($money)) {
-       //don't log
-       logTransaction();
-     }
+    $money = parseMoney();
+
+    // adds money
     $total = $money + $total;
     document.getElementById("total").innerHTML = $total;
 
@@ -26,6 +23,17 @@ $(function(){
 		$newListItem.hide().fadeIn(100);
 
 	};
+
+  // checks money
+  function parseMoney() {
+    $money =  parseInt(document.getElementById("money").value, 10);
+    if (isNaN($money)) {
+       //don't log
+       logTransaction();
+    }
+    return $money;
+  }
+
 
 
 	// Call logTransaction function when enter key is pressed
