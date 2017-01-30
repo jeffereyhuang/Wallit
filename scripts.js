@@ -2,6 +2,7 @@ $(function(){
 
 	// initializes money spent
   var $total = 0;
+  var $input = document.getElementById("money");
   document.getElementById("total").innerHTML = $total;
 
 	// Define function to add transactions/update money
@@ -10,15 +11,18 @@ $(function(){
 
     // adds money
     $total = $money + $total;
-    document.getElementById("total").innerHTML = $total;
+    // displays a string
+    var $display = $total.toFixed(2);
+    document.getElementById("total").innerHTML = $display;
 
 		// Create new list item
-		var $newListItem = $('<li class="todo">' + $money + '</li>');
+    var $moneyFormatted = $money.toFixed(2)
+		var $newListItem = $('<li class="todo">' + $moneyFormatted + '</li>');
 
 		// Add list item to end of list
 		var $addListItem = $('ul').append($newListItem);
 
-
+    $input.value = '';
 		// Hide list item before fading it into view
 		$newListItem.hide().fadeIn(100);
 
@@ -26,7 +30,7 @@ $(function(){
 
   // checks money
   function parseMoney() {
-    $money =  parseInt(document.getElementById("money").value, 10);
+    $money = parseFloat($input.value);
     if (isNaN($money)) {
        //don't log
        logTransaction();
