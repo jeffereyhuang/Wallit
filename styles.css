@@ -35,12 +35,12 @@ li {
   text-align: center;
 }
 
-.display {
-  border: none
+#guiding-text {
+  font-style: italic;
 }
 
 input {
-  margin : 75px auto;
+  margin : 100px auto;
   margin-top: 0;
   display: block;
   background: transparent;
@@ -54,6 +54,7 @@ input {
 input:focus {
   outline:none;
 }
+
 
 @media (min-width: 900px) {
   input {
