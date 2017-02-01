@@ -6,10 +6,12 @@ $(function(){
   var $total = document.getElementById("total");
   var $displaySpent = '$' + $spent
   $total.innerHTML = $displaySpent;
+  var $started = false;
+  var $itemCount = 0;
 
 	// Define function to add transactions/update money
 	function logTransaction(){
-    $money = parseMoney();
+    $money = parseMoney($input.value);
 
     // adds money
     $spent = $money + $spent;
@@ -20,7 +22,8 @@ $(function(){
 
 		// Create new list item
     var $moneyFormatted = decimalCheck($money);
-		var $newListItem = $('<li class="todo">' + $moneyFormatted + '</li>');
+		var $newListItem = $('<li class="transactions">' + $moneyFormatted + ' </li>');
+    // ADD ID=$itemCount @4230439048023984092384092309238
 
 		// Add list item to end of list
 		var $addListItem = $('ul').append($newListItem);
@@ -31,11 +34,29 @@ $(function(){
 		// Hide list item before fading it into view
 		$newListItem.hide().fadeIn(100);
 
+    // Hides first prompt and shows second
+    switchRow();
+
+    logText();
 	};
 
+  function logText() {
+    var row = document.getElementById()
+    var $addOn = ""
+    $input.value
+
+    // Clear field
+    $input.value = '';
+
+    // Hides current prompt and shows other
+    switchRow();
+
+    logTransaction();
+  };
+
   // checks money
-  function parseMoney() {
-    $money = parseFloat($input.value);
+  function parseMoney($moneyReported) {
+    $money = parseFloat($moneyReported);
     if (isNaN($money)) {
        //don't log
        logTransaction();
@@ -51,12 +72,37 @@ $(function(){
       return '$' + $decimal;
   };
 
+  function switchRow() {
+    hideRow(+$started);
+    $started = !$started;
+    showRow(+$started);
+  }
+
+  function showRow($id) {
+    $id = $id.toString();
+    var $selected = document.getElementById($id);
+    $selected.className = ''; // hide the other one
+    return;
+  };
+
+  function hideRow($id) {
+    $id = $id.toString();
+    var $selected = document.getElementById($id);
+    $selected.className += 'hidden';
+    return;
+  };
+
+
 
 	// Call logTransaction function when enter key is pressed
 	$(document).on('keypress', function(e){
 		if(e.which == 13) {
-			logTransaction();
+      if ($started)
+		    logText();
+      else
+        logTransaction();
 		}
 	});
+
 
 });
