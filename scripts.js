@@ -2,7 +2,6 @@ $(function(){
 
 	// initializes money spent
   var $spent = 0;
-  var $input = document.getElementById("money");
   var $total = document.getElementById("total");
   var $displaySpent = '$' + $spent
   $total.innerHTML = $displaySpent;
@@ -11,6 +10,7 @@ $(function(){
 
 	// Define function to add transactions/update money
 	function logTransaction(){
+    var $input = document.getElementById("money");
     $money = parseMoney($input.value);
 
     // adds money
@@ -22,8 +22,9 @@ $(function(){
 
 		// Create new list item
     var $moneyFormatted = decimalCheck($money);
-		var $newListItem = $('<li class="transactions">' + $moneyFormatted + ' </li>');
-    // ADD ID=$itemCount @4230439048023984092384092309238
+		var $newListItem = $('<li class="transactions" id=' + $itemCount + '>' +
+      $moneyFormatted + ' </li>');
+
 
 		// Add list item to end of list
 		var $addListItem = $('ul').append($newListItem);
@@ -35,25 +36,22 @@ $(function(){
 		$newListItem.hide().fadeIn(100);
 
     switchRow();
-
-    logText();
 	};
 
 
 
 
   function logText() {
-    $$total.innerHTML = "kjsdflkj";
-    var $listItem = document.getElementById($itemCount);
-    var $addOn = "- " + $input.value;
-    $listItem.value += $addOn;
+    var $input = document.getElementById("description");
+    var $allListItems = document.getElementsByClassName("transactions");
+    var $listItem = $allListItems[$itemCount];
+    alert($listItem.innerHTML);
+    $listItem.innerHTML += $input.value;
 
     // Clear field
     $input.value = '';
 
     switchRow();
-
-    logTransaction();
   };
 
 
@@ -116,7 +114,7 @@ $(function(){
 	// Call function when enter key is pressed
 	$(document).on('keypress', function(e){
 		if(e.which == 13) {
-      if ($started) {
+      if ($started == true) {
 		    logText();
       }
       else
