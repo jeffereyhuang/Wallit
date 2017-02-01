@@ -34,25 +34,42 @@ $(function(){
 		// Hide list item before fading it into view
 		$newListItem.hide().fadeIn(100);
 
-    // Hides first prompt and shows second
     switchRow();
 
     logText();
 	};
 
+
+
+
   function logText() {
-    var row = document.getElementById()
-    var $addOn = ""
-    $input.value
+    $$total.innerHTML = "kjsdflkj";
+    var $listItem = document.getElementById($itemCount);
+    var $addOn = "- " + $input.value;
+    $listItem.value += $addOn;
 
     // Clear field
     $input.value = '';
 
-    // Hides current prompt and shows other
     switchRow();
 
     logTransaction();
   };
+
+
+  function abortTransaction() {
+    if ($started) {
+      switchRow();
+      // delete text
+      var $listItem = document.getElementById($itemCount);
+      // $listItem.value = '';
+      delete $listItem;
+      return;
+    }
+    else {
+      logTransaction();
+    }
+  }
 
   // checks money
   function parseMoney($moneyReported) {
@@ -72,12 +89,6 @@ $(function(){
       return '$' + $decimal;
   };
 
-  function switchRow() {
-    hideRow(+$started);
-    $started = !$started;
-    showRow(+$started);
-  }
-
   function showRow($id) {
     $id = $id.toString();
     var $selected = document.getElementById($id);
@@ -94,11 +105,20 @@ $(function(){
 
 
 
-	// Call logTransaction function when enter key is pressed
+  // Hides current prompt and shows other
+  function switchRow() {
+    hideRow(+$started);
+    $started = !$started;
+    showRow(+$started);
+  }
+
+
+	// Call function when enter key is pressed
 	$(document).on('keypress', function(e){
 		if(e.which == 13) {
-      if ($started)
+      if ($started) {
 		    logText();
+      }
       else
         logTransaction();
 		}
