@@ -1,4 +1,4 @@
-# wallit
+# Wallit
 Wallit is a simple personal finance app that allows you to keep track of your budget by logging your transactions easily.
 
 Quick Overview:
