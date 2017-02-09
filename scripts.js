@@ -18,6 +18,7 @@ $(function(){
 
     // displays a string
     $displaySpent = decimalCheck($spent);
+    $displaySpent = numberWithCommas ($displaySpent);
     $total.innerHTML = $displaySpent;
 
 		// Create new list item
@@ -39,14 +40,12 @@ $(function(){
 	};
 
 
-
-
   function logText() {
     var $input = document.getElementById("description");
     var $allListItems = document.getElementsByClassName("transactions");
     var $listItem = $allListItems[$itemCount];
-    alert($listItem.innerHTML);
     $listItem.innerHTML += $input.value;
+    $itemCount++;
 
     // Clear field
     $input.value = '';
@@ -54,9 +53,14 @@ $(function(){
     switchRow();
   };
 
+  // add commas
+  function numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
 
   function abortTransaction() {
-    if ($started) {
+    if ($started === true) {
       switchRow();
       // delete text
       var $listItem = document.getElementById($itemCount);
@@ -65,7 +69,7 @@ $(function(){
       return;
     }
     else {
-      logTransaction();
+      return;
     }
   }
 
@@ -91,6 +95,7 @@ $(function(){
     $id = $id.toString();
     var $selected = document.getElementById($id);
     $selected.className = ''; // hide the other one
+
     return;
   };
 
@@ -100,7 +105,6 @@ $(function(){
     $selected.className += 'hidden';
     return;
   };
-
 
 
   // Hides current prompt and shows other
@@ -122,5 +126,11 @@ $(function(){
 		}
 	});
 
+
+  $(document).keyup(function(e) {
+    if(e.keyCode == 27) {
+        abortTransaction();
+    }
+  });
 
 });
