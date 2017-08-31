@@ -6,4 +6,4 @@ The amount of money you've spent will show up directly in the middle of the page
 Type in the cost of the current transaction you're trying to log and click enter.
 The number will automatically update and your transaction will be logged where it says transactions.
 
-jeffereyhuang.com/wallit/index
+www.jeffereyhuang.com/wallit-project/index
